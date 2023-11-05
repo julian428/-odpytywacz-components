@@ -1,11 +1,11 @@
 import { AnchorHTMLAttributes } from "react";
+import { cn } from "../lib/utils";
 
 interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   coverUrl?: string;
   title: string;
   description?: string;
   color?: string;
-  href?: string;
 }
 
 export default function Card({
@@ -13,12 +13,16 @@ export default function Card({
   title,
   description,
   color,
-  href,
+  className,
+  ...props
 }: Props) {
   return (
     <a
-      href={href}
-      className="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
+      {...props}
+      className={cn(
+        "card sm:card-side max-w-md hover:bg-base-200 transition-colors sm:max-w-none",
+        className
+      )}
     >
       <figure className="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pr-0">
         <img
