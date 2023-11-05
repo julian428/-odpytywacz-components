@@ -1,29 +1,39 @@
-interface Props {
+import { AnchorHTMLAttributes } from "react";
+
+interface Props extends AnchorHTMLAttributes<HTMLAnchorElement> {
   coverUrl?: string;
   title: string;
   description?: string;
   color?: string;
+  href?: string;
 }
 
-export default function Card({ coverUrl, title, description, color }: Props) {
+export default function Card({
+  coverUrl,
+  title,
+  description,
+  color,
+  href,
+}: Props) {
   return (
-    <div
-      style={{ backgroundColor: color }}
-      className="card w-96 h-44 bg-base-100 shadow-xl image-full overflow-hidden duration-700 hover:scale-[99%] group transition-all"
+    <a
+      href={href}
+      className="card sm:card-side hover:bg-base-200 transition-colors sm:max-w-none"
     >
-      {coverUrl && (
-        <figure>
-          <img className="w-full" src={coverUrl} alt="something went wrong" />
-        </figure>
-      )}
-      <div
-        style={{ backgroundColor: color }}
-        className="w-full h-full group-hover:opacity-0 opacity-50 transition-all duration-700"
-      ></div>
+      <figure className="mx-auto w-full object-cover p-6 max-sm:pb-0 sm:max-w-[12rem] sm:pr-0">
+        <img
+          loading="lazy"
+          className="border-base-content bg-base-300 rounded-btn border border-opacity-5"
+          src={coverUrl}
+          alt={title}
+        />
+      </figure>
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        <p>{description}</p>
+        <h2 style={{ color }} className="card-title">
+          {title}
+        </h2>
+        <p className="text-xs opacity-60">{description}</p>
       </div>
-    </div>
+    </a>
   );
 }
