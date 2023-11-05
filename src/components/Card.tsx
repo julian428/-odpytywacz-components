@@ -20,7 +20,7 @@ export default function Card({
     <a
       {...props}
       className={cn(
-        "card sm:card-side max-w-md hover:bg-base-200 transition-colors sm:max-w-none",
+        "card sm:card-side max-w-md hover:bg-base-200 transition-colors",
         className
       )}
     >
